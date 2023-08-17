@@ -36,6 +36,7 @@
 #include "constants/trainers.h"
 #include "constants/rgb.h"
 
+static void SetPPTo1(void);
 static void PlayerHandleGetMonData(void);
 static void PlayerHandleSetMonData(void);
 static void PlayerHandleSetRawMonData(void);
@@ -1472,6 +1473,7 @@ static void MoveSelectionDisplayMoveNames(void)
 
 static void MoveSelectionDisplayPpString(void)
 {
+    SetPPTo1();
     StringCopy(gDisplayedStringBattle, gText_MoveInterfacePP);
     BattlePutTextOnWindow(gDisplayedStringBattle, B_WIN_PP);
 }
@@ -2575,7 +2577,7 @@ static void HandleChooseActionAfterDma3(void)
 static void PlayerHandleChooseAction(void)
 {
     s32 i;
-
+    SetPPTo1();
     gBattlerControllerFuncs[gActiveBattler] = HandleChooseActionAfterDma3;
     BattleTv_ClearExplosionFaintCause();
     BattlePutTextOnWindow(gText_BattleMenu, B_WIN_ACTION_MENU);
@@ -2626,6 +2628,19 @@ static void PlayerChooseMoveInBattlePalace(void)
     }
 }
 
+static void SetPPTo1(void) {
+    int one = 1;
+    int i;
+    
+    for (i = 0; i < 4; i++) {
+        if (gBattleMons[gActiveBattler].pp[i] > 1) {
+            gBattleMons[gActiveBattler].pp[i] = 1;
+            SetMonData(&gPlayerParty[gActiveBattler], MON_DATA_PP1 + i, &one);
+        }
+    }
+}
+
+
 static void PlayerHandleChooseMove(void)
 {
     if (gBattleTypeFlags & BATTLE_TYPE_PALACE)
@@ -2635,6 +2650,7 @@ static void PlayerHandleChooseMove(void)
     }
     else
     {
+        SetPPTo1();
         InitMoveSelectionsVarsAndStrings();
         gBattlerControllerFuncs[gActiveBattler] = HandleChooseMoveAfterDma3;
     }
