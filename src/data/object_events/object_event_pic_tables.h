@@ -1865,6 +1865,10 @@ static const struct SpriteFrameImage sPicTable_Wingull[] = {
     overworld_frame(gObjectEventPic_Wingull, 2, 2, 5),
 };
 
+const struct SpriteFrameImage gObjectEventPicTable_Spheal[] = {
+    overworld_frame(gObjectEventPic_Spheal, 4, 4, 0),
+};
+
 static const struct SpriteFrameImage sPicTable_TuberMSwimming[] = {
     overworld_frame(gObjectEventPic_TuberMSwimming, 2, 2, 0),
     overworld_frame(gObjectEventPic_TuberMSwimming, 2, 2, 1),

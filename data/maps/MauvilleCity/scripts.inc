@@ -26,6 +26,25 @@ MauvilleCity_EventScript_Boy::
 	msgbox MauvilleCity_Text_NurseHurtMonBackToHealth, MSGBOX_NPC
 	end
 
+MauvilleCity_EventScript_Spheal::
+    msgbox MauvilleCity_Text_GameCornerClosed, MSGBOX_NPC
+    waitmessage
+    pokemart MauvilleCity_Spheal_TM_Shop
+    msgbox MauvilleCity_Text_GameCornerGamblingBad, MSGBOX_NPC
+    release
+    end
+
+    .align 2
+MauvilleCity_Spheal_TM_Shop:
+	.2byte ITEM_TM_DOUBLE_TEAM
+	.2byte ITEM_TM_PSYCHIC
+	.2byte ITEM_TM_FLAMETHROWER
+	.2byte ITEM_TM_THUNDERBOLT
+	.2byte ITEM_TM_ICE_BEAM
+    .2byte ITEM_NONE
+	release
+	end
+
 MauvilleCity_EventScript_Maniac::
 	msgbox MauvilleCity_Text_AllSortsOfPeopleComeThrough, MSGBOX_NPC
 	end
@@ -665,3 +684,14 @@ MauvilleCity_Text_ExplainTV:
 
 MauvilleCity_Text_BeenCheckingOutTV:
 	.string "Hi, have you been checking out TVs?$"
+
+MauvilleCity_Text_GameCornerClosed:
+    .string "Bark! Due to twtich policy on \n"
+    .string "gambling, the game corner is closed! \p"
+    .string "Bark! But I still have TMs if you \n"
+    .string "would like to buy them!$"
+
+MauvilleCity_Text_GameCornerGamblingBad:
+    .string "Remeber kids, gambling is bad\n"
+    .string "Bark!$"
+
